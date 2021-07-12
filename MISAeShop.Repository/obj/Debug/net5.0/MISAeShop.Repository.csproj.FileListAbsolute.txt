@@ -1,0 +1,15 @@
+E:\MISA\MISAeShop\api\MISAeShop.Repository\bin\Debug\net5.0\MISAeShop.Core.dll
+E:\MISA\MISAeShop\api\MISAeShop.Repository\obj\Debug\net5.0\MISAeShop.Repository.csprojAssemblyReference.cache
+E:\MISA\MISAeShop\api\MISAeShop.Repository\obj\Debug\net5.0\MISAeShop.Repository.GeneratedMSBuildEditorConfig.editorconfig
+E:\MISA\MISAeShop\api\MISAeShop.Repository\obj\Debug\net5.0\MISAeShop.Repository.AssemblyInfoInputs.cache
+E:\MISA\MISAeShop\api\MISAeShop.Repository\obj\Debug\net5.0\MISAeShop.Repository.AssemblyInfo.cs
+E:\MISA\MISAeShop\api\MISAeShop.Repository\bin\Debug\net5.0\MISAeShop.Repository.deps.json
+E:\MISA\MISAeShop\api\MISAeShop.Repository\bin\Debug\net5.0\MISAeShop.Repository.dll
+E:\MISA\MISAeShop\api\MISAeShop.Repository\bin\Debug\net5.0\ref\MISAeShop.Repository.dll
+E:\MISA\MISAeShop\api\MISAeShop.Repository\bin\Debug\net5.0\MISAeShop.Repository.pdb
+E:\MISA\MISAeShop\api\MISAeShop.Repository\bin\Debug\net5.0\MISAeShop.Core.pdb
+E:\MISA\MISAeShop\api\MISAeShop.Repository\obj\Debug\net5.0\MISAeShop.Repository.csproj.CoreCompileInputs.cache
+E:\MISA\MISAeShop\api\MISAeShop.Repository\obj\Debug\net5.0\MISAeShop.Repository.csproj.CopyComplete
+E:\MISA\MISAeShop\api\MISAeShop.Repository\obj\Debug\net5.0\MISAeShop.Repository.dll
+E:\MISA\MISAeShop\api\MISAeShop.Repository\obj\Debug\net5.0\ref\MISAeShop.Repository.dll
+E:\MISA\MISAeShop\api\MISAeShop.Repository\obj\Debug\net5.0\MISAeShop.Repository.pdb

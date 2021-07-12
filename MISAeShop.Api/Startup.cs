@@ -7,6 +7,9 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
+using MISAeShop.Core.Interfaces.Repository;
+using MISAeShop.Core.Interfaces.Service;
+using MISAeShop.Repository.Repositories;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -32,6 +35,9 @@ namespace MISAeShop.Api
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "MISAeShop.Api", Version = "v1" });
             });
+            // Todo Tiêm
+            //services.AddScoped(typeof(IBaseRepository<>), typeof(BaseRepository<>));
+            //services.AddScoped(typeof(IBaseService<>), typeof(BaseService<>));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

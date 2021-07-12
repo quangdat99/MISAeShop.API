@@ -27,3 +27,9 @@ E:\MISA\MISAeShop\api\MISAeShop.Api\obj\Debug\net5.0\MISAeShop.Api.dll
 E:\MISA\MISAeShop\api\MISAeShop.Api\obj\Debug\net5.0\ref\MISAeShop.Api.dll
 E:\MISA\MISAeShop\api\MISAeShop.Api\obj\Debug\net5.0\MISAeShop.Api.pdb
 E:\MISA\MISAeShop\api\MISAeShop.Api\obj\Debug\net5.0\MISAeShop.Api.genruntimeconfig.cache
+E:\MISA\MISAeShop\api\MISAeShop.Api\bin\Debug\net5.0\Dapper.dll
+E:\MISA\MISAeShop\api\MISAeShop.Api\bin\Debug\net5.0\MySqlConnector.dll
+E:\MISA\MISAeShop\api\MISAeShop.Api\bin\Debug\net5.0\MISAeShop.Core.dll
+E:\MISA\MISAeShop\api\MISAeShop.Api\bin\Debug\net5.0\MISAeShop.Repository.dll
+E:\MISA\MISAeShop\api\MISAeShop.Api\bin\Debug\net5.0\MISAeShop.Core.pdb
+E:\MISA\MISAeShop\api\MISAeShop.Api\bin\Debug\net5.0\MISAeShop.Repository.pdb

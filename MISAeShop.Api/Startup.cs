@@ -9,6 +9,7 @@ using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
 using MISAeShop.Core.Interfaces.Repository;
 using MISAeShop.Core.Interfaces.Service;
+using MISAeShop.Core.Services;
 using MISAeShop.Repository.Repositories;
 using System;
 using System.Collections.Generic;
@@ -35,9 +36,19 @@ namespace MISAeShop.Api
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "MISAeShop.Api", Version = "v1" });
             });
-            // Todo Tiêm
-            //services.AddScoped(typeof(IBaseRepository<>), typeof(BaseRepository<>));
-            //services.AddScoped(typeof(IBaseService<>), typeof(BaseService<>));
+            services.AddScoped(typeof(IBaseRepository<>), typeof(BaseRepository<>));
+            services.AddScoped(typeof(IBaseService<>), typeof(BaseService<>));
+
+            services.AddScoped<IInventoryItemCategoryService, InventoryItemCategoryService>();
+            services.AddScoped<IInventoryItemComboDetailService, InventoryItemComboDetailService>();
+            services.AddScoped<IInventoryItemService, InventoryItemService>();
+            services.AddScoped<IUnitService, UnitService>();
+
+
+            services.AddScoped<IInventoryItemCategoryRepository, InventoryItemCategoryRepository>();
+            services.AddScoped<IInventoryItemComboDetailRepository, InventoryItemComboDetailRepository>();
+            services.AddScoped<IInventoryItemRepository, InventoryItemRepository>();
+            services.AddScoped<IUnitRepository, UnitRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

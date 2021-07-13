@@ -23,7 +23,7 @@ namespace MISAeShop.Core.Interfaces.Service
         /// <param name="Sort">Tiêu chí sắp xếp</param>
         /// <returns>Danh sách bản ghi theo yêu cầu</returns>    
         /// CreatedBy: dqdat (12/07/2021)
-        public IEnumerable<T> GetPaging(int PageSize, int PageNumber, List<FilterData> listFilters, ref int totalRecord);
+        public IEnumerable<T> GetPaging(FilterPagingData filterPagingData, ref int totalRecord);
 
         /// <summary>
         /// Thêm mới 

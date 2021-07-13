@@ -30,7 +30,7 @@ namespace MISAeShop.Core.Entities
         /// <summary>
         /// Trạng thái kinh doanh: 1-đang kinh doanh, 2-ngừng kinh doanh
         /// </summary>
-        public int? Status { get; set; }
+        public int? Status { get; set; } = 1;
         /// <summary>
         /// Người tạo
         /// </summary>

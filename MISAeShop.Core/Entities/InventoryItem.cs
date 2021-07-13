@@ -21,9 +21,17 @@ namespace MISAeShop.Core.Entities
         /// </summary>
         public Guid? InventoryItemCategoryID { get; set; }
         /// <summary>
+        /// Tên nhóm hàng hóa
+        /// </summary>
+        public string InventoryItemCategoryName { get; set; }
+        /// <summary>
         /// ID đươn vị tính
         /// </summary>
         public Guid? UnitID { get; set; }
+        /// <summary>
+        /// Tên đơn vị tính
+        /// </summary>
+        public string UnitName { get; set; }
         /// <summary>
         /// ID mẫu hàng hóa
         /// </summary>
@@ -75,7 +83,7 @@ namespace MISAeShop.Core.Entities
         /// <summary>
         /// Hiển thị trên màn hình bán hàng: 1-có, 2-không
         /// </summary>
-        public int? ShowInMenu { get; set; }
+        public int? ShowInMenu { get; set; } = 1;
         /// <summary>
         /// Màu sắc hàng hóa
         /// </summary>
@@ -107,15 +115,15 @@ namespace MISAeShop.Core.Entities
         /// <summary>
         /// Trạng thái kinh doanh: 1-đang kinh doanh, 2-ngừng kinh doanh
         /// </summary>
-        public int? Status { get; set; }
+        public int? Status { get; set; } = 1;
         /// <summary>
         /// ID của ảnh
         /// </summary>
         public Guid? PictureID { get; set; }
         /// <summary>
-        /// Quản lý theo
+        /// Quản lý theo: 1-khác, 2-Lô/hạn sử dụng, 3-Serial/ IMEI
         /// </summary>
-        public int? ManageType { get; set; }
+        public int? ManageType { get; set; } = 1;
         /// <summary>
         /// Người tạo
         /// </summary>

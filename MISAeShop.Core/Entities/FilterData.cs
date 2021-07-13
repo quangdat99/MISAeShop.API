@@ -23,13 +23,6 @@ namespace MISAeShop.Core.Entities
         /// Kiểu lọc dữ liệu
         /// </summary>
         public int FilterType { get; set; }
-        /// <summary>
-        /// Xác nhận có được sort hay không
-        /// </summary>
-        public bool IsSort { get; set; }
-        /// <summary>
-        /// Xác định kiểu sort
-        /// </summary>
-        public string SortType { get; set; }
+
     }
 }

@@ -22,7 +22,7 @@ namespace MISAeShop.Core.Entities
         /// <summary>
         /// Sử dụng: 1-có, 2-không
         /// </summary>
-        public int? IsSelected { get; set; }
+        public int? IsSelected { get; set; } = 1;
         /// <summary>
         /// Số lượng
         /// </summary>

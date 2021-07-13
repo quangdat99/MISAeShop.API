@@ -36,31 +36,43 @@ namespace MISAeShop.Core.Services
         #endregion
 
         #region METHODS
-        public IEnumerable<T> GetPaging(int PageSize, int PageNumber, List<FilterData> listFilters, ref int TotalRecord)
+        public IEnumerable<T> GetPaging(FilterPagingData filterPagingData, ref int TotalRecord)
         {
             var WhereClause = new StringBuilder();
             var Sort = "";
-            //kiểm tra nếu ko có yêu cầu lọc thì lấy hết dữ liệu
-            if (listFilters.Count() == 0)
+
+            // Kiểm tra Sắp xếp
+            if (filterPagingData.SortProperty == null || filterPagingData.SortProperty =="")
             {
-                WhereClause.Append("1=1");
                 Sort += "CreatedDate Desc";
             }
             else
             {
+                Sort += filterPagingData.SortProperty + " " + filterPagingData.SortType;
+
+            }
+            // Kiểm tra nếu ko có yêu cầu lọc thì lấy hết dữ liệu
+            if (filterPagingData.DataFilter.Count() == 0)
+            {
+                WhereClause.Append("1=1");
+            }
+            else
+            {
                 var indexOfFilterData = 1;
-                foreach (var filterData in listFilters)
+                foreach (var filterData in filterPagingData.DataFilter)
                 {
 
                     if (filterData.FilterValue is not null)
                     {
                         //thực hiện nối mệnh đề
-                        if (indexOfFilterData < listFilters.Count() && indexOfFilterData > 1)
+                        if ( indexOfFilterData > 1)
                         {
                             WhereClause.Append(" And ");
                         }
+
                         WhereClause.Append("(");
                         WhereClause.Append(filterData.FilterProperty);
+
                         // kiểm tra nếu giá trị lọc mà rỗng thì sẽ lấy tất cả dữ liệu
                         if (filterData.FilterValue.ToString() == "")
                         {
@@ -80,20 +92,10 @@ namespace MISAeShop.Core.Services
 
                     }
 
-                    //Build mệnh đề sort
-                    if (filterData.IsSort == true)
-                    {
-                        if (Sort.Length > 0)
-                        {
-                            Sort += ",";
-                        }
-                        Sort = Sort + " " + filterData.FilterProperty + " " + filterData.SortType;
-                    }
                     indexOfFilterData++;
                 }
             }
-            if (Sort == "") Sort = "CreatedDate Desc";
-            var entities = _baseRepository.GetPaging(PageSize, PageNumber, WhereClause.ToString(), Sort, ref TotalRecord);
+            var entities = _baseRepository.GetPaging(filterPagingData.PageSize, filterPagingData.PageNumber, WhereClause.ToString(), Sort, ref TotalRecord);
             return entities;
         }
 

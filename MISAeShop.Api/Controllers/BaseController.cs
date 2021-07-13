@@ -247,12 +247,12 @@ namespace MISAeShop.Api.Controllers
         /// </returns>
         /// created by ndluc(12/06/2021)
         [HttpPost("GetPaging")]
-        public IActionResult GetPaging(int PageSize, int PageNumber, List<FilterData> listFilters)
+        public IActionResult GetPaging(FilterPagingData filterPagingData)
         {
             try
             {
                 var totalRecord = 0;
-                var res = _baseService.GetPaging(PageSize, PageNumber, listFilters, ref totalRecord);
+                var res = _baseService.GetPaging(filterPagingData, ref totalRecord);
                 if (res.Count() == 0)
                 {
                     var actionResult = new Core.Entities.ActionResult(204, "Không có dữ liệu trả về", "", new List<T>());

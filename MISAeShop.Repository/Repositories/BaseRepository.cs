@@ -125,6 +125,20 @@ namespace MISAeShop.Repository.Repositories
             return rowAffect;
         }
 
+        public IEnumerable<T> GetPaging(int PageSize, int PageNumber, string WhereClause, string Sort, ref int TotalRecord)
+        {
+            var SqlCommand = $"Proc_GetPaging{_className}s";
+            Parameters.Add("PageNumber", PageNumber);
+            Parameters.Add("PageSize", PageSize);
+            Parameters.Add("WhereClause", WhereClause);
+            Parameters.Add("Sort", Sort);
+            var totalRecord = 0;
+            Parameters.Add("TotalRecord", totalRecord, null, ParameterDirection.Output);
+            var entities = DbConnection.Query<T>(SqlCommand, param: Parameters, commandType: CommandType.StoredProcedure);
+            TotalRecord = Parameters.Get<int>("TotalRecord");
+            return entities;
+        }
+
         /// <summary>
         /// Thực hiện gán giá trị tham số đầu vào của store với các property của object
         /// </summary>

@@ -51,5 +51,16 @@ namespace MISAeShop.Core.Interfaces.Repository
         /// <returns>Số thực thể bị xóa.</returns>
         /// CreatedBy: dqdat (12/07/2021)
         int Delete(Guid id);
+
+        /// <summary>
+        /// Lấy dữ liệu có phân trang, lọc và sắp xếp theo tiêu chí chọn
+        /// </summary>
+        /// <param name="PageSize">Số bản ghi một trang</param>
+        /// <param name="PageNumber">Số thứ tự trang</param>
+        /// <param name="WhereClause">Tiêu chí lọc</param>
+        /// <param name="Sort">Tiêu chí sắp xếp</param>
+        /// <returns>Danh sách bản ghi theo yêu cầu</returns>
+        /// CreatedBy: dqdat (12/07/2021)
+        public IEnumerable<T> GetPaging(int PageSize, int PageNumber, string WhereClause, string Sort, ref int TotalRecord);
     }
 }

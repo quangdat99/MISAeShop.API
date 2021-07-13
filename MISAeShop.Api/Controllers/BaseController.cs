@@ -1,5 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using MISAeShop.Core.Entities;
+using MISAeShop.Core.Exceptions;
 using MISAeShop.Core.Interfaces.Repository;
 using MISAeShop.Core.Interfaces.Service;
 using System;
@@ -55,12 +57,25 @@ namespace MISAeShop.Api.Controllers
         [HttpGet]
         public IActionResult GetAll()
         {
-            var res = _baseRepository.GetAll();
-            if (res.Any())
+            try
             {
-                return Ok(res);
+                var res = _baseRepository.GetAll();
+                if (res.Count() > 0)
+                {
+                    var actionResult = new Core.Entities.ActionResult(200, "Lấy dữ liệu thành công", "", res);
+                    return Ok(actionResult);
+                }
+                else
+                {
+                    var actionResult = new Core.Entities.ActionResult(204, "Không có dữ liệu trả về", "", new List<T>());
+                    return Ok(actionResult);
+                }
             }
-            return NoContent();
+            catch (Exception exception)
+            {
+                var actionResult = new Core.Entities.ActionResult(500, "Có lỗi xảy ra, vui lòng liên hệ MISA để được trợ giúp", exception.Message, new List<T>());
+                return Ok(actionResult);
+            }
         }
 
         /// <summary>
@@ -77,13 +92,26 @@ namespace MISAeShop.Api.Controllers
         [HttpGet("{id}")]
         public IActionResult GetById(Guid id)
         {
-            var res = _baseRepository.GetById(id);
-
-            if (res == null)
+           
+            try
             {
-                return NoContent();
+                var res = _baseRepository.GetById(id);
+                if (res != null)
+                {
+                    var actionResult = new Core.Entities.ActionResult(200, "Lấy dữ liệu thành công", "", res);
+                    return Ok(actionResult);
+                }
+                else
+                {
+                    var actionResult = new Core.Entities.ActionResult(204, "Không có dữ liệu trả về", "", null);
+                    return Ok(actionResult);
+                }
             }
-            return Ok(res);
+            catch (Exception exception)
+            {
+                var actionResult = new Core.Entities.ActionResult(500, "Có lỗi xảy ra, vui lòng liên hệ MISA để được trợ giúp", exception.Message, null);
+                return Ok(actionResult);
+            }
         }
 
         /// <summary>
@@ -100,12 +128,31 @@ namespace MISAeShop.Api.Controllers
         [HttpPost]
         public IActionResult Insert(T t)
         {
-            var rowsAffect = _baseService.Insert(t);
-            if (rowsAffect > 0)
+            try
             {
-                return StatusCode(201, rowsAffect);
+                var rowsAffect = _baseService.Insert(t);
+                if (rowsAffect > 0)
+                {
+                    var actionResult = new Core.Entities.ActionResult(200, "Thêm dữ liệu thành công", "", rowsAffect);
+                    return Ok(actionResult);
+                }
+                else
+                {
+                    var actionResult = new Core.Entities.ActionResult(204, "Thêm mới không thành công", "", 0);
+                    return Ok(actionResult);
+                }
             }
-            return NoContent();
+            catch (ValidateException exception)
+            {
+                var actionResult = new Core.Entities.ActionResult(400, exception.Message, "", exception.DataErr);
+                return Ok(actionResult);
+
+            }
+            catch (Exception exception)
+            {
+                var actionResult = new Core.Entities.ActionResult(500, "Có lỗi xảy ra, vui lòng liên hệ MISA để được trợ giúp", exception.Message, 0);
+                return Ok(actionResult);
+            }
         }
 
         /// <summary>
@@ -122,12 +169,30 @@ namespace MISAeShop.Api.Controllers
         [HttpPut("{id}")]
         public IActionResult Update(T t, Guid id)
         {
-            var rowsAffect = _baseService.Update(t, id);
-            if (rowsAffect > 0)
+            try
             {
-                return Ok(rowsAffect);
+                var rowsAffect = _baseService.Update(t, id);
+                if (rowsAffect > 0)
+                {
+                    var actionResult = new Core.Entities.ActionResult(200, "Sửa dữ liệu thành công", "", rowsAffect);
+                    return Ok(actionResult);
+                }
+                else
+                {
+                    var actionResult = new Core.Entities.ActionResult(204, "Sửa không thành công", "", 0);
+                    return Ok(actionResult);
+                }
             }
-            return NoContent();
+            catch (ValidateException exception)
+            {
+                var actionResult = new Core.Entities.ActionResult(400, exception.Message, "", 0);
+                return Ok(actionResult);
+            }
+            catch (Exception exception)
+            {
+                var actionResult = new Core.Entities.ActionResult(500, "Có lỗi xảy ra, vui lòng liên hệ MISA để được trợ giúp", exception.Message, 0);
+                return Ok(actionResult);
+            }
         }
 
         /// <summary>
@@ -144,14 +209,67 @@ namespace MISAeShop.Api.Controllers
         [HttpDelete("{id}")]
         public IActionResult Delete(Guid id)
         {
-            var rowsAffect = _baseRepository.Delete(id);
-            if (rowsAffect > 0)
+            try
             {
-                return Ok(rowsAffect);
+                var rowsAffect = _baseRepository.Delete(id);
+                if (rowsAffect > 0)
+                {
+                    var actionResult = new Core.Entities.ActionResult(200, "Xóa dữ liệu thành công", "", rowsAffect);
+                    return Ok(actionResult);
+                }
+                else
+                {
+                    var actionResult = new Core.Entities.ActionResult(204, "Xóa không thành công", "", 0);
+                    return Ok(actionResult);
+                }
             }
-            return NoContent();
+            catch (ValidateException exception)
+            {
+                var actionResult = new Core.Entities.ActionResult(400, exception.Message, "", exception.DataErr);
+                return Ok(actionResult);
+            }
+            catch (Exception exception)
+            {
+                var actionResult = new Core.Entities.ActionResult(500, "Có lỗi xảy ra, vui lòng liên hệ MISA để được trợ giúp", exception.Message, 0);
+                return Ok(actionResult);
+            }
         }
-        #endregion
-    }
 
+        /// <summary>
+        /// Lấy dữ liệu theo phân trang
+        /// </summary>
+        /// <param name="PageNumber">vị trí trang</param>
+        /// <param name="PageSize">kích cỡ trang</param>
+        /// <returns>Dữ liệu trả về có phân trang
+        /// 500 - lỗi serve
+        /// 400 - lỗi dữ liệu đầu vào
+        /// 200 -  lấy dữ liệu thành công
+        /// </returns>
+        /// created by ndluc(12/06/2021)
+        [HttpPost("GetPaging")]
+        public IActionResult GetPaging(int PageSize, int PageNumber, List<FilterData> listFilters)
+        {
+            try
+            {
+                var totalRecord = 0;
+                var res = _baseService.GetPaging(PageSize, PageNumber, listFilters, ref totalRecord);
+                if (res.Count() == 0)
+                {
+                    var actionResult = new Core.Entities.ActionResult(204, "Không có dữ liệu trả về", "", new List<T>());
+                    return Ok(actionResult);
+                }
+                else
+                {
+                    var actionResult = new Core.Entities.ActionResult(200, "Lấy dữ liệu thành công", "", res, totalRecord);
+                    return Ok(actionResult);
+                }
+            }
+            catch (Exception exception)
+            {
+                var actionResult = new Core.Entities.ActionResult(500, "Có lỗi xảy ra, vui lòng liên hệ MISA để được trợ giúp", exception.Message, new List<T>());
+                return Ok(actionResult);
+            }
+            #endregion
+        }
+    }
 }

@@ -1,4 +1,5 @@
-﻿using MISAeShop.Core.Interfaces.Repository;
+﻿using MISAeShop.Core.Entities;
+using MISAeShop.Core.Interfaces.Repository;
 using MISAeShop.Core.Interfaces.Service;
 using System;
 using System.Collections.Generic;
@@ -35,6 +36,67 @@ namespace MISAeShop.Core.Services
         #endregion
 
         #region METHODS
+        public IEnumerable<T> GetPaging(int PageSize, int PageNumber, List<FilterData> listFilters, ref int TotalRecord)
+        {
+            var WhereClause = new StringBuilder();
+            var Sort = "";
+            //kiểm tra nếu ko có yêu cầu lọc thì lấy hết dữ liệu
+            if (listFilters.Count() == 0)
+            {
+                WhereClause.Append("1=1");
+                Sort += "CreatedDate Desc";
+            }
+            else
+            {
+                var indexOfFilterData = 1;
+                foreach (var filterData in listFilters)
+                {
+
+                    if (filterData.FilterValue is not null)
+                    {
+                        //thực hiện nối mệnh đề
+                        if (indexOfFilterData < listFilters.Count() && indexOfFilterData > 1)
+                        {
+                            WhereClause.Append(" And ");
+                        }
+                        WhereClause.Append("(");
+                        WhereClause.Append(filterData.FilterProperty);
+                        // kiểm tra nếu giá trị lọc mà rỗng thì sẽ lấy tất cả dữ liệu
+                        if (filterData.FilterValue.ToString() == "")
+                        {
+                            WhereClause.Append(" LIKE");
+                            WhereClause.Append(" CONCAT('%', '");
+                            WhereClause.Append("");
+                            WhereClause.Append("','%')");
+                            WhereClause.Append("Or ");
+                            WhereClause.Append(filterData.FilterProperty);
+                            WhereClause.Append(" Is Null )");
+                        }
+                        else
+                        {
+                            // build mệnh đề cho câu lệnh where
+                            BuildWhereClause(filterData, WhereClause);
+                        }
+
+                    }
+
+                    //Build mệnh đề sort
+                    if (filterData.IsSort == true)
+                    {
+                        if (Sort.Length > 0)
+                        {
+                            Sort += ",";
+                        }
+                        Sort = Sort + " " + filterData.FilterProperty + " " + filterData.SortType;
+                    }
+                    indexOfFilterData++;
+                }
+            }
+            if (Sort == "") Sort = "CreatedDate Desc";
+            var entities = _baseRepository.GetPaging(PageSize, PageNumber, WhereClause.ToString(), Sort, ref TotalRecord);
+            return entities;
+        }
+
         /// <summary>
         /// Thêm mới một thực thể
         /// </summary>
@@ -74,6 +136,74 @@ namespace MISAeShop.Core.Services
             else
             {
                 return null;
+            }
+        }
+
+        /// <summary>
+        /// Build từng mệnh đề cho câu lệnh Where
+        /// </summary>
+        /// <param name="filterData">trường thông tin cần lọc</param>
+        /// <param name="WhereClause"> câu lệnh where</param>
+        /// CreatedBy: dqdat (12/07/2021)
+        private void BuildWhereClause(FilterData filterData, StringBuilder WhereClause)
+        {
+            switch (filterData.FilterType)
+            {
+                case 1:
+                    WhereClause.Append(" LIKE");
+                    WhereClause.Append(" CONCAT('%', '");
+                    WhereClause.Append(filterData.FilterValue);
+                    WhereClause.Append("','%'))");
+                    break;
+                case 2:
+                    WhereClause.Append(" LIKE");
+                    WhereClause.Append(" CONCAT('");
+                    WhereClause.Append(filterData.FilterValue);
+                    WhereClause.Append("','%'))");
+                    break;
+                case 3:
+                    WhereClause.Append(" LIKE");
+                    WhereClause.Append(" CONCAT('%','");
+                    WhereClause.Append(filterData.FilterValue);
+                    WhereClause.Append("'))");
+                    break;
+                case 4:
+                    WhereClause.Append(" LIKE");
+                    WhereClause.Append(" CONCAT( '");
+                    WhereClause.Append(filterData.FilterValue);
+                    WhereClause.Append("'))");
+                    break;
+                case 5:
+                    WhereClause.Append(" NOT LIKE");
+                    WhereClause.Append(" CONCAT('%', '");
+                    WhereClause.Append(filterData.FilterValue);
+                    WhereClause.Append("','%'))");
+                    break;
+                case 6:
+                    WhereClause.Append(" <= ");
+                    WhereClause.Append(filterData.FilterValue);
+                    WhereClause.Append(")");
+                    break;
+                case 7:
+                    WhereClause.Append(" < ");
+                    WhereClause.Append(filterData.FilterValue);
+                    WhereClause.Append(")");
+                    break;
+                case 8:
+                    WhereClause.Append(" = ");
+                    WhereClause.Append(filterData.FilterValue);
+                    WhereClause.Append(")");
+                    break;
+                case 9:
+                    WhereClause.Append(" >= ");
+                    WhereClause.Append(filterData.FilterValue);
+                    WhereClause.Append(")");
+                    break;
+                case 10:
+                    WhereClause.Append(" > ");
+                    WhereClause.Append(filterData.FilterValue);
+                    WhereClause.Append(")");
+                    break;
             }
         }
 

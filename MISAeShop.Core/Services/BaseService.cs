@@ -74,7 +74,7 @@ namespace MISAeShop.Core.Services
                         WhereClause.Append(filterData.FilterProperty);
 
                         // kiểm tra nếu giá trị lọc mà rỗng thì sẽ lấy tất cả dữ liệu
-                        if (filterData.FilterValue.ToString() == "")
+                        if (filterData.FilterValue.ToString() == "" || filterData.FilterValue.ToString() == "0")
                         {
                             WhereClause.Append(" LIKE");
                             WhereClause.Append(" CONCAT('%', '");

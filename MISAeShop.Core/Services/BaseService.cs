@@ -95,6 +95,7 @@ namespace MISAeShop.Core.Services
                     indexOfFilterData++;
                 }
             }
+            WhereClause.Append(" And ParentID IS NULL ");
             var entities = _baseRepository.GetPaging(filterPagingData.PageSize, filterPagingData.PageNumber, WhereClause.ToString(), Sort, ref TotalRecord);
             return entities;
         }

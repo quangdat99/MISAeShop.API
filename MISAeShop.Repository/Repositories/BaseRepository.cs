@@ -79,7 +79,7 @@ namespace MISAeShop.Repository.Repositories
         /// CreatedBy: dqdat (12/07/2021)
         public T GetById(Guid id)
         {
-            Parameters.Add($"@m_{_className}Id", id);
+            Parameters.Add($"@m_{_className}ID", id);
             var entity = DbConnection.QueryFirstOrDefault<T>($"Proc_Get{_className}ByID", param: Parameters, commandType: CommandType.StoredProcedure);
             return entity;
         }
@@ -106,7 +106,7 @@ namespace MISAeShop.Repository.Repositories
         public int Update(T t, Guid id)
         {
             // Gán lại gái trị cho Id
-            t.GetType().GetProperty($"{_className}Id").SetValue(t, id);
+            t.GetType().GetProperty($"{_className}ID").SetValue(t, id);
             MappingProcParametersValueWithObject(t);
             var rowAffect = DbConnection.Execute($"Proc_Update{_className}", param: Parameters, commandType: CommandType.StoredProcedure);
             return rowAffect;
@@ -120,7 +120,7 @@ namespace MISAeShop.Repository.Repositories
         /// CreatedBy: dqdat (12/07/2021)
         public int Delete(Guid id)
         {
-            Parameters.Add($"@m_{_className}Id", id);
+            Parameters.Add($"@m_{_className}ID", id);
             var rowAffect = DbConnection.Execute($"Proc_Delete{_className}ByID", param: Parameters, commandType: CommandType.StoredProcedure);
             return rowAffect;
         }

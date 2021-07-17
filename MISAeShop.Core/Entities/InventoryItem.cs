@@ -115,7 +115,7 @@ namespace MISAeShop.Core.Entities
         /// <summary>
         /// Trạng thái kinh doanh: 1-đang kinh doanh, 2-ngừng kinh doanh
         /// </summary>
-        public int? Status { get; set; }
+        public int? Status { get; set; } = 1;
         /// <summary>
         /// ID của ảnh
         /// </summary>
@@ -123,7 +123,11 @@ namespace MISAeShop.Core.Entities
         /// <summary>
         /// Quản lý theo: 1-khác, 2-Lô/hạn sử dụng, 3-Serial/ IMEI
         /// </summary>
-        public int? ManageType { get; set; }
+        public int? ManageType { get; set; } = 1;
+        /// <summary>
+        /// Trạng thái lựa chọn
+        /// </summary>
+        public bool IsSelect { get; set; } = false;
         /// <summary>
         /// Người tạo
         /// </summary>

@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using MISAeShop.Core.Entities;
+using MISAeShop.Core.Exceptions;
 using MISAeShop.Core.Interfaces.Repository;
 using MISAeShop.Core.Interfaces.Service;
 using System;
@@ -78,6 +79,40 @@ namespace MISAeShop.Api.Controllers
             catch (Exception exception)
             {
                 var actionResult = new Core.Entities.ActionResult(500, "Có lỗi xảy ra, vui lòng liên hệ MISA để được trợ giúp", exception.Message, new List<InventoryItem>());
+                return Ok(actionResult);
+            }
+        }
+
+        [HttpDelete("DeleteInventoryItemByParentID/{parentID}")]
+        public IActionResult DeleteInventoryItemByParentID(Guid parentID)
+        {
+            try
+            {
+                var rowsAffect = _inventoryItemRepository.DeleteInventoryItemByParentID(parentID);
+                if (rowsAffect > 0)
+                {
+                    var actionResult = new Core.Entities.ActionResult(200, "Xóa dữ liệu thành công", "", rowsAffect);
+                    return Ok(actionResult);
+                }
+                else if(rowsAffect == 0)
+                {
+                    var actionResult = new Core.Entities.ActionResult(204, "Không có dữ liệu", "", 0);
+                    return Ok(actionResult);
+                }
+                else 
+                {
+                    var actionResult = new Core.Entities.ActionResult(500, "Xóa không thành công", "", 0);
+                    return Ok(actionResult);
+                }
+            }
+            catch (ValidateException exception)
+            {
+                var actionResult = new Core.Entities.ActionResult(400, exception.Message, "", exception.DataErr);
+                return Ok(actionResult);
+            }
+            catch (Exception exception)
+            {
+                var actionResult = new Core.Entities.ActionResult(500, "Có lỗi xảy ra, vui lòng liên hệ MISA để được trợ giúp", exception.Message, 0);
                 return Ok(actionResult);
             }
         }

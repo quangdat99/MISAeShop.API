@@ -29,7 +29,13 @@ namespace MISAeShop.Repository.Repositories
 
         }
 
-        
+        public int DeleteInventoryItemByParentID(Guid parentID)
+        {
+            Parameters.Add($"@m_ParentID", parentID);
+            var rowAffect = DbConnection.Execute($"Proc_DeleteInventoryItemByParentID", param: Parameters, commandType: CommandType.StoredProcedure);
+            return rowAffect;
+        }
+
         public InventoryItem GetInventoryItemBySKUCode(string skuCode)
         {
             Parameters.Add("@m_SKUCode", skuCode);

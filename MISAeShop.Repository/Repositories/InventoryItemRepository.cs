@@ -44,10 +44,33 @@ namespace MISAeShop.Repository.Repositories
             return inventoryItem;
         }
 
+        public IEnumerable<InventoryItem> GetInventoryItemComboDetails(Guid inventoryItemComboID)
+        {
+            Parameters.Add("@m_InventoryItemComboID", inventoryItemComboID);
+            var inventoryItems = DbConnection.Query<InventoryItem>("Proc_GetInventoryItemComboDetails", param: Parameters, commandType: CommandType.StoredProcedure);
+
+            return inventoryItems;
+        }
+
         public IEnumerable<InventoryItem> GetInventoryItemsByParentID(Guid parentID)
         {
             Parameters.Add("@m_ParentID", parentID);
             var inventoryItems = DbConnection.Query<InventoryItem>("Proc_GetInventoryItemsByParentID", param: Parameters, commandType: CommandType.StoredProcedure);
+
+            return inventoryItems;
+        }
+
+        public IEnumerable<InventoryItem> GetInventoryItemSelectOptionComboByParentID(Guid parentID)
+        {
+            Parameters.Add("@m_ParentID", parentID);
+            var inventoryItems = DbConnection.Query<InventoryItem>("Proc_GetInventoryItemSelectOptionComboByParentID", param: Parameters, commandType: CommandType.StoredProcedure);
+
+            return inventoryItems;
+        }
+
+        public IEnumerable<InventoryItem> GetInventoryItemsOptionCombo()
+        {
+            var inventoryItems = DbConnection.Query<InventoryItem>("Proc_GetInventoryItemsOptionCombo", commandType: CommandType.StoredProcedure);
 
             return inventoryItems;
         }

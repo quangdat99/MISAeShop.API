@@ -32,5 +32,25 @@ namespace MISAeShop.Core.Interfaces.Repository
         /// <param name="parentID"></param>
         /// <returns></returns>
         int DeleteInventoryItemByParentID(Guid parentID);
+
+        /// <summary>
+        /// Lấy toàn bộ thông tin thành phần hàng hóa của combo
+        /// </summary>
+        /// <param name="inventoryItemComboID"></param>
+        /// <returns></returns>
+        IEnumerable<InventoryItem> GetInventoryItemComboDetails(Guid inventoryItemComboID);
+
+        /// <summary>
+        /// Lấy danh sách hàng hóa làm thành phần cho combo
+        /// </summary>
+        /// <returns></returns>
+        IEnumerable<InventoryItem> GetInventoryItemsOptionCombo();
+
+        /// <summary>
+        /// Lấy thông tin hàng hóa lựa chọn làm thành phần của combo
+        /// </summary>
+        /// <param name="parentID"></param>
+        /// <returns></returns>
+        IEnumerable<InventoryItem> GetInventoryItemSelectOptionComboByParentID(Guid parentID);
     }
 }

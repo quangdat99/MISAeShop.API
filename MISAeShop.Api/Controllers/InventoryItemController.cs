@@ -35,6 +35,11 @@ namespace MISAeShop.Api.Controllers
             _inventoryItemRepository = inventoryItemRepository;
         }
 
+        /// <summary>
+        /// Lấy thông tin hàng hóa theo mã sku
+        /// </summary>
+        /// <param name="skuCode"></param>
+        /// <returns></returns>
         [HttpGet("GetInventoryItemBySKUCode/{skuCode}")]
         public IActionResult GetInventoryItemBySKUCode(string skuCode)
         {
@@ -59,6 +64,11 @@ namespace MISAeShop.Api.Controllers
             }
         }
 
+        /// <summary>
+        /// Lấy danh sách hàng hóa theo parentID
+        /// </summary>
+        /// <param name="parentID"></param>
+        /// <returns></returns>
         [HttpGet("GetInventoryItemsByParentID/{parentID}")]
         public IActionResult GetInventoryItemsByParentID (Guid parentID)
         {
@@ -83,6 +93,11 @@ namespace MISAeShop.Api.Controllers
             }
         }
 
+        /// <summary>
+        /// Xóa hàng hóa theo parentID
+        /// </summary>
+        /// <param name="parentID"></param>
+        /// <returns></returns>
         [HttpDelete("DeleteInventoryItemByParentID/{parentID}")]
         public IActionResult DeleteInventoryItemByParentID(Guid parentID)
         {
@@ -113,6 +128,78 @@ namespace MISAeShop.Api.Controllers
             catch (Exception exception)
             {
                 var actionResult = new Core.Entities.ActionResult(500, "Có lỗi xảy ra, vui lòng liên hệ MISA để được trợ giúp", exception.Message, 0);
+                return Ok(actionResult);
+            }
+        }
+
+        [HttpGet("GetInventoryItemComboDetails/{inventoryItemComboID}")]
+        public IActionResult GetInventoryItemComboDetails(Guid inventoryItemComboID)
+        {
+            try
+            {
+                var res = _inventoryItemRepository.GetInventoryItemComboDetails(inventoryItemComboID);
+                if (res.Count() > 0)
+                {
+                    var actionResult = new Core.Entities.ActionResult(200, "Lấy dữ liệu thành công", "", res);
+                    return Ok(actionResult);
+                }
+                else
+                {
+                    var actionResult = new Core.Entities.ActionResult(204, "Không có dữ liệu trả về", "", new List<InventoryItem>());
+                    return Ok(actionResult);
+                }
+            }
+            catch (Exception exception)
+            {
+                var actionResult = new Core.Entities.ActionResult(500, "Có lỗi xảy ra, vui lòng liên hệ MISA để được trợ giúp", exception.Message, new List<InventoryItem>());
+                return Ok(actionResult);
+            }
+        }
+
+        [HttpGet("GetInventoryItemSelectOptionComboByParentID/{parentID}")]
+        public IActionResult GetInventoryItemSelectOptionComboByParentID(Guid parentID)
+        {
+            try
+            {
+                var res = _inventoryItemRepository.GetInventoryItemSelectOptionComboByParentID(parentID);
+                if (res.Count() > 0)
+                {
+                    var actionResult = new Core.Entities.ActionResult(200, "Lấy dữ liệu thành công", "", res);
+                    return Ok(actionResult);
+                }
+                else
+                {
+                    var actionResult = new Core.Entities.ActionResult(204, "Không có dữ liệu trả về", "", new List<InventoryItem>());
+                    return Ok(actionResult);
+                }
+            }
+            catch (Exception exception)
+            {
+                var actionResult = new Core.Entities.ActionResult(500, "Có lỗi xảy ra, vui lòng liên hệ MISA để được trợ giúp", exception.Message, new List<InventoryItem>());
+                return Ok(actionResult);
+            }
+        }
+
+        [HttpGet("GetInventoryItemsOptionCombo")]
+        public IActionResult GetInventoryItemsOptionCombo()
+        {
+            try
+            {
+                var res = _inventoryItemRepository.GetInventoryItemsOptionCombo();
+                if (res.Count() > 0)
+                {
+                    var actionResult = new Core.Entities.ActionResult(200, "Lấy dữ liệu thành công", "", res);
+                    return Ok(actionResult);
+                }
+                else
+                {
+                    var actionResult = new Core.Entities.ActionResult(204, "Không có dữ liệu trả về", "", new List<InventoryItem>());
+                    return Ok(actionResult);
+                }
+            }
+            catch (Exception exception)
+            {
+                var actionResult = new Core.Entities.ActionResult(500, "Có lỗi xảy ra, vui lòng liên hệ MISA để được trợ giúp", exception.Message, new List<InventoryItem>());
                 return Ok(actionResult);
             }
         }

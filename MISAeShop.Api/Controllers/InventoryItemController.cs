@@ -132,6 +132,11 @@ namespace MISAeShop.Api.Controllers
             }
         }
 
+        /// <summary>
+        /// Lấy toàn bộ thông tin thành phần hàng hóa của combo
+        /// </summary>
+        /// <param name="inventoryItemComboID"></param>
+        /// <returns></returns>
         [HttpGet("GetInventoryItemComboDetails/{inventoryItemComboID}")]
         public IActionResult GetInventoryItemComboDetails(Guid inventoryItemComboID)
         {
@@ -156,6 +161,11 @@ namespace MISAeShop.Api.Controllers
             }
         }
 
+        /// <summary>
+        /// Lấy thông tin hàng hóa lựa chọn làm thành phần của combo
+        /// </summary>
+        /// <param name="parentID"></param>
+        /// <returns></returns>
         [HttpGet("GetInventoryItemSelectOptionComboByParentID/{parentID}")]
         public IActionResult GetInventoryItemSelectOptionComboByParentID(Guid parentID)
         {
@@ -180,6 +190,10 @@ namespace MISAeShop.Api.Controllers
             }
         }
 
+        /// <summary>
+        /// Lấy danh sách hàng hóa làm thành phần cho combo
+        /// </summary>
+        /// <returns></returns>
         [HttpGet("GetInventoryItemsOptionCombo")]
         public IActionResult GetInventoryItemsOptionCombo()
         {

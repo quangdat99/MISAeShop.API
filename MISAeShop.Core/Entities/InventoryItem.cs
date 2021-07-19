@@ -156,5 +156,9 @@ namespace MISAeShop.Core.Entities
         /// ComponentID
         /// </summary>
         public int? ComponentID { get; set; }
+        /// <summary>
+        /// ID của hàng hóa loại combo
+        /// </summary>
+        public Guid? InventoryItemComboDetailID { get; set; }
     }
 }

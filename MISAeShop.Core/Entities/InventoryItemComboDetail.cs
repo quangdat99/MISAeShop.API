@@ -18,7 +18,7 @@ namespace MISAeShop.Core.Entities
         /// <summary>
         /// ID của hàng hóa thành phần của combo
         /// </summary>
-        public Guid Child { get; set; }
+        public Guid ChildID { get; set; }
         /// <summary>
         /// Sử dụng: 1-có, 2-không
         /// </summary>
@@ -27,5 +27,9 @@ namespace MISAeShop.Core.Entities
         /// Số lượng
         /// </summary>
         public int? Quantity { get; set; }
+        /// <summary>
+        /// Component ID
+        /// </summary>
+        public int? ComponentID { get; set; }
     }
 }

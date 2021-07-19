@@ -46,7 +46,7 @@ namespace MISAeShop.Repository.Repositories
 
         public IEnumerable<InventoryItem> GetInventoryItemComboDetails(Guid inventoryItemComboID)
         {
-            Parameters.Add("@m_InventoryItemComboID", inventoryItemComboID);
+            Parameters.Add("@m_InventoryItemComboDetailID", inventoryItemComboID);
             var inventoryItems = DbConnection.Query<InventoryItem>("Proc_GetInventoryItemComboDetails", param: Parameters, commandType: CommandType.StoredProcedure);
 
             return inventoryItems;

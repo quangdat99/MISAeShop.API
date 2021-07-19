@@ -144,5 +144,17 @@ namespace MISAeShop.Core.Entities
         /// Ngày sửa
         /// </summary>
         public DateTime? ModifiedDate { get; set; }
+        /// <summary>
+        /// Số lượng
+        /// </summary>
+        public int? Quantity { get; set; }
+        /// <summary>
+        /// Trạng thái sử dụng cho combo
+        /// </summary>
+        public int? IsSelected { get; set; }
+        /// <summary>
+        /// ComponentID
+        /// </summary>
+        public int? ComponentID { get; set; }
     }
 }

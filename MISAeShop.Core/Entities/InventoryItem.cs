@@ -1,4 +1,5 @@
-﻿using MISAeShop.Core.Enums;
+﻿using MISAeShop.Core.Attributes;
+using MISAeShop.Core.Enums;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,6 +16,7 @@ namespace MISAeShop.Core.Entities
         /// <summary>
         /// ID hàng hóa
         /// </summary>
+        
         public Guid InventoryItemID { get; set; }
         /// <summary>
         /// ID nhóm hàng hóa
@@ -27,6 +29,7 @@ namespace MISAeShop.Core.Entities
         /// <summary>
         /// ID đươn vị tính
         /// </summary>
+        [PropertyRequired("Đơn vị tính")]
         public Guid? UnitID { get; set; }
         /// <summary>
         /// Tên đơn vị tính
@@ -43,6 +46,7 @@ namespace MISAeShop.Core.Entities
         /// <summary>
         /// Tên hàng hóa
         /// </summary>
+        [PropertyRequired("Tên hàng hóa")]
         public string InventoryItemName { get; set; }
         /// <summary>
         /// Mã SKU

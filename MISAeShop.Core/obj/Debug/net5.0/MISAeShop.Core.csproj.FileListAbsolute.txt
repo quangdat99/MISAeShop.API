@@ -12,3 +12,4 @@ E:\MISA\MISAeShop\api\MISAeShop.Core\obj\Debug\net5.0\MISAeShop.Core.csproj.Core
 E:\MISA\MISAeShop\api\MISAeShop.Core\obj\Debug\net5.0\MISAeShop.Core.dll
 E:\MISA\MISAeShop\api\MISAeShop.Core\obj\Debug\net5.0\ref\MISAeShop.Core.dll
 E:\MISA\MISAeShop\api\MISAeShop.Core\obj\Debug\net5.0\MISAeShop.Core.pdb
+E:\MISA\MISAeShop\api\MISAeShop.Core\obj\Debug\net5.0\MISAeShop.Core.Properties.ValidateResources.resources

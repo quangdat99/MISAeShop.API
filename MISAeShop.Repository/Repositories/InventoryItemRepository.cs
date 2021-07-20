@@ -29,6 +29,22 @@ namespace MISAeShop.Repository.Repositories
 
         }
 
+        public bool CheckBarCodeExist(string barCode, Guid? inventoryItemID = null)
+        {
+            Parameters.Add("@m_BarCode", barCode);
+            Parameters.Add("@m_InventoryItemID", inventoryItemID);
+            var isExist = DbConnection.ExecuteScalar<bool>("Proc_CheckBarCodeExist", param: Parameters, commandType: CommandType.StoredProcedure);
+            return isExist;
+        }
+
+        public bool CheckSKUCodeExist(string skuCode, Guid? inventoryItemID = null)
+        {
+            Parameters.Add("@m_SKUCode", skuCode);
+            Parameters.Add("@m_InventoryItemID", inventoryItemID);
+            var isExist = DbConnection.ExecuteScalar<bool>("Proc_CheckSKUCodeExist", param: Parameters, commandType: CommandType.StoredProcedure);
+            return isExist;
+        }
+
         public int DeleteInventoryItemByParentID(Guid parentID)
         {
             Parameters.Add($"@m_ParentID", parentID);

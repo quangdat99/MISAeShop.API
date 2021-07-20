@@ -52,5 +52,21 @@ namespace MISAeShop.Core.Interfaces.Repository
         /// <param name="parentID"></param>
         /// <returns></returns>
         IEnumerable<InventoryItem> GetInventoryItemSelectOptionComboByParentID(Guid parentID);
+
+        /// <summary>
+        /// Kiểm tra trùng mã sku
+        /// </summary>
+        /// <param name="skuCode"></param>
+        /// <param name="inventoryItemID"></param>
+        /// <returns></returns>
+        public bool CheckSKUCodeExist(string skuCode, Guid? inventoryItemID = null);
+
+        /// <summary>
+        /// Kiểm tra trùng mã vạch
+        /// </summary>
+        /// <param name="barCode"></param>
+        /// <param name="inventoryItemID"></param>
+        /// <returns></returns>
+        public bool CheckBarCodeExist(string barCode, Guid? inventoryItemID = null);
     }
 }

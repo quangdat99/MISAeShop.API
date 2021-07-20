@@ -151,7 +151,7 @@ namespace MISAeShop.Core.Entities
         /// <summary>
         /// Trạng thái sử dụng cho combo
         /// </summary>
-        public int? IsSelected { get; set; }
+        public bool? IsSelected { get; set; }
         /// <summary>
         /// ComponentID
         /// </summary>

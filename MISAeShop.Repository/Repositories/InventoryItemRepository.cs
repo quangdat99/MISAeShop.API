@@ -14,11 +14,14 @@ namespace MISAeShop.Repository.Repositories
     /// <summary>
     /// Repository hàng hóa
     /// </summary>
+    /// CreatedBy: dqdat (20/07/2021)
     public class InventoryItemRepository: BaseRepository<InventoryItem>, IInventoryItemRepository
     {
         #region Declare
         DynamicParameters Parameters;
         #endregion
+      
+        #region Constructor
         /// <summary>
         /// Phương thức khởi tạo
         /// </summary>
@@ -28,7 +31,9 @@ namespace MISAeShop.Repository.Repositories
             Parameters = new DynamicParameters();
 
         }
-
+        #endregion
+       
+        #region Methods
         public bool CheckBarCodeExist(string barCode, Guid? inventoryItemID = null)
         {
             Parameters.Add("@m_BarCode", barCode);
@@ -50,6 +55,14 @@ namespace MISAeShop.Repository.Repositories
             Parameters.Add($"@m_ParentID", parentID);
             var rowAffect = DbConnection.Execute($"Proc_DeleteInventoryItemByParentID", param: Parameters, commandType: CommandType.StoredProcedure);
             return rowAffect;
+        }
+
+        public AutoIncreaseCode GetAutoIncreaseCode(string tableName, string fieldName)
+        {
+            Parameters.Add("@m_TableName", tableName);
+            Parameters.Add("@m_FieldName", fieldName);
+            var autoIncreaseCode = DbConnection.QueryFirstOrDefault<AutoIncreaseCode>("Proc_GetAutoIncreaseCode", param: Parameters, commandType: CommandType.StoredProcedure);
+            return autoIncreaseCode;
         }
 
         public InventoryItem GetInventoryItemBySKUCode(string skuCode)
@@ -90,5 +103,14 @@ namespace MISAeShop.Repository.Repositories
 
             return inventoryItems;
         }
+
+        public void updateAutoIncreaseCode(string tableName, string fieldName, int? value)
+        {
+            Parameters.Add($"@m_TableName", tableName);
+            Parameters.Add($"@m_FieldName", fieldName);
+            Parameters.Add($"@m_Value", value);
+            DbConnection.Execute($"Proc_UpdateAutoIncreaseCode", param: Parameters, commandType: CommandType.StoredProcedure);       
+        }
+        #endregion
     }
 }

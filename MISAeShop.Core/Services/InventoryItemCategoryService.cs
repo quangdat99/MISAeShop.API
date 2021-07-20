@@ -12,6 +12,7 @@ namespace MISAeShop.Core.Services
     /// <summary>
     /// Service nhóm hàng hóa
     /// </summary>
+    /// CreatedBy: dqdat (20/07/2021)
     public class InventoryItemCategoryService: BaseService<InventoryItemCategory>, IInventoryItemCategoryService
     {
         /// <summary>

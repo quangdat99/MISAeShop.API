@@ -109,7 +109,7 @@ namespace MISAeShop.Core.Services
         /// <param name="t"></param>
         /// <returns></returns>
         /// CreatedBy: dqdat (12/07/2021)
-        public int? Insert(T t)
+        public virtual int? Insert(T t)
         {
             // Validate dữ liệu:
             var isValid = ValidateObject(t);
@@ -130,7 +130,7 @@ namespace MISAeShop.Core.Services
         /// <param name="id">id của đối tượng</param>
         /// <returns></returns>
         /// CreatedBy: dqdat (12/07/2021)
-        public int? Update(T t, Guid id)
+        public virtual int? Update(T t, Guid id)
         {
             //t.EntityState = Enum.EntityState.Update;
             // Validate dữ liệu:

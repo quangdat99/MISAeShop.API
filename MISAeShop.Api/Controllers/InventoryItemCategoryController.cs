@@ -12,6 +12,7 @@ namespace MISAeShop.Api.Controllers
     /// <summary>
     /// Controller nhóm hàng hóa
     /// </summary>
+    /// CreatedBy: dqdat (20/07/2021)
     [Route("api/v1/[controller]s")]
     public class InventoryItemCategoryController : BaseController<InventoryItemCategory>
     {

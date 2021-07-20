@@ -12,6 +12,7 @@ namespace MISAeShop.Api.Controllers
     /// <summary>
     /// Controller đơn vị tính
     /// </summary>
+    /// CreatedBy: dqdat (20/07/2021)
     [Route("api/v1/[controller]s")]
     public class UnitController : BaseController<Unit>
     {   

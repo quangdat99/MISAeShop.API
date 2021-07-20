@@ -12,6 +12,7 @@ namespace MISAeShop.Core.Services
     /// <summary>
     /// Service đơn vị tính
     /// </summary>
+    /// CreatedBy: dqdat (20/07/2021)
     public class UnitService :BaseService<Unit>, IUnitService
     {
         /// <summary>

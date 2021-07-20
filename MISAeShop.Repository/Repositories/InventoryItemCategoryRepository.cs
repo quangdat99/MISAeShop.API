@@ -12,6 +12,7 @@ namespace MISAeShop.Repository.Repositories
     /// <summary>
     /// Repository nhóm hàng hóa
     /// </summary>
+    /// CreatedBy: dqdat (20/07/2021)
     public class InventoryItemCategoryRepository:BaseRepository<InventoryItemCategory>,IInventoryItemCategoryRepository
     {
         /// <summary>

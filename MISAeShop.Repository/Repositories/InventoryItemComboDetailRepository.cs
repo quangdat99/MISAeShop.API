@@ -14,11 +14,14 @@ namespace MISAeShop.Repository.Repositories
     /// <summary>
     /// Repository Thành phần hàng hóa của combo
     /// </summary>
+    /// CreatedBy: dqdat (20/07/2021)
     public class InventoryItemComboDetailRepository:BaseRepository<InventoryItemComboDetail>, IInventoryItemComboDetailRepository
     {
         #region Declare
         DynamicParameters Parameters;
         #endregion
+
+        #region Constructor
         /// <summary>
         /// Phương thức khởi tạo
         /// </summary>
@@ -27,8 +30,9 @@ namespace MISAeShop.Repository.Repositories
         {
             Parameters = new DynamicParameters();
         }
+        #endregion
 
-
+        #region Methods
         public int DeleteItemCombo(Guid childID, int componentID, Guid inventoryItemComboDetailID)
         {
             Parameters.Add($"@m_ChildID", childID);
@@ -37,5 +41,6 @@ namespace MISAeShop.Repository.Repositories
             var rowAffect = DbConnection.Execute($"Proc_DeleteItemCombo", param: Parameters, commandType: CommandType.StoredProcedure);
             return rowAffect;
         }
+        #endregion
     }
 }

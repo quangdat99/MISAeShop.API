@@ -12,6 +12,7 @@ namespace MISAeShop.Core.Services
     /// <summary>
     /// Service thành phần hàng hóa của combo
     /// </summary>
+    /// CreatedBy: dqdat (20/07/2021)
     public class InventoryItemComboDetailService: BaseService<InventoryItemComboDetail>, IInventoryItemComboDetailService
     {
         /// <summary>

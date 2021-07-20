@@ -10,6 +10,7 @@ namespace MISAeShop.Core.Interfaces.Repository
     /// <summary>
     /// Interface Repository Đơn vị tính
     /// </summary>
+    /// CreatedBy: dqdat (20/07/2021)
     public interface IUnitRepository: IBaseRepository<Unit>
     {
     }

@@ -10,6 +10,7 @@ namespace MISAeShop.Core.Interfaces.Repository
     /// <summary>
     /// Interface Repository Nhóm hàng hóa
     /// </summary>
+    /// CreatedBy: dqdat (20/07/2021)
     public interface IInventoryItemCategoryRepository: IBaseRepository<InventoryItemCategory>
     {
     }

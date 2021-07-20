@@ -10,6 +10,7 @@ namespace MISAeShop.Core.Interfaces.Repository
     /// <summary>
     /// Interface Repository Thành phần hàng hóa của combo
     /// </summary>
+    /// CreatedBy: dqdat (20/07/2021)
     public interface IInventoryItemComboDetailRepository : IBaseRepository<InventoryItemComboDetail>
     {
         /// <summary>
@@ -19,6 +20,7 @@ namespace MISAeShop.Core.Interfaces.Repository
         /// <param name="componentID"></param>
         /// <param name="inventoryItemComboDetailID"></param>
         /// <returns></returns>
+        /// CreatedBy: dqdat (20/07/2021)
         int DeleteItemCombo(Guid childID, int componentID, Guid inventoryItemComboDetailID);
     }
 }

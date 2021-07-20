@@ -11,10 +11,11 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace MISAeShop.Core.Services
-{   
+{
     /// <summary>
     /// Service hàng hóa
     /// </summary>
+    /// CreatedBy: dqdat (20/07/2021)
     public class InventoryItemService: BaseService<InventoryItem>, IInventoryItemService
     {
         #region DECLARE
@@ -24,6 +25,7 @@ namespace MISAeShop.Core.Services
         IInventoryItemRepository _inventoryItemRepository;
         #endregion
 
+        #region Constructor
         /// <summary>
         /// Hàm khởi tạo
         /// </summary>
@@ -32,12 +34,15 @@ namespace MISAeShop.Core.Services
         {
             _inventoryItemRepository = inventoryItemRepository;
         }
+        #endregion
+
+        #region Methods
         /// <summary>
         /// Phương thức dùng để cho valid của các trường hợp riêng biệt.
         /// </summary>
         /// <param name="t">Một thực thể</param>
         /// <param name="isInsert">Xác định insert hoặc update</param>
-        /// CreatedBy: dqdat (13/06/2021)
+        /// CreatedBy: dqdat (20/07/2021)
         protected override bool ValidateCustom(InventoryItem inventoryItem, bool isInsert = true)
         {
             var isValid = true;
@@ -93,5 +98,83 @@ namespace MISAeShop.Core.Services
 
 
         }
+
+        /// <summary>
+        /// Thêm mới hàng hóa
+        /// </summary>
+        /// <param name="inventoryItem"></param>
+        /// <returns></returns>
+        /// CreatedBy: dqdat (20/07/2021)
+        public override int? Insert(InventoryItem inventoryItem)
+        {
+            if (string.IsNullOrEmpty(inventoryItem.SKUCode) )
+            {
+                inventoryItem.SKUCode = GetAutoIncreaseCode("InventoryItem", "SKUCode");
+            }
+            if (string.IsNullOrEmpty(inventoryItem.BarCode))
+            {
+                inventoryItem.BarCode = GetAutoIncreaseCode("InventoryItem", "BarCode");
+            }
+            var res = base.Insert(inventoryItem);
+            return res;
+        }
+
+        /// <summary>
+        /// Sửa thông tin hàng hóa
+        /// </summary>
+        /// <param name="inventoryItem"></param>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        /// CreatedBy: dqdat (20/07/2021)
+        public override int? Update(InventoryItem inventoryItem, Guid id)
+        {
+            if (string.IsNullOrEmpty(inventoryItem.SKUCode))
+            {
+                inventoryItem.SKUCode = GetAutoIncreaseCode("InventoryItem", "SKUCode");
+            }
+            if (string.IsNullOrEmpty(inventoryItem.BarCode))
+            {
+                inventoryItem.BarCode = GetAutoIncreaseCode("InventoryItem", "BarCode");
+            }
+            var res = base.Update(inventoryItem, id);
+            return res;
+        }
+
+
+        public string GetAutoIncreaseCode(string tableName, string fieldName)
+        {
+            var newCode = "";
+            var isDuplicate = true;
+            do
+            {
+                // Lấy thông tin mã tự động tăng từ hệ thống
+                var autoIncreaseCode = _inventoryItemRepository.GetAutoIncreaseCode(tableName, fieldName) as AutoIncreaseCode;
+
+                if (fieldName == "SKUCode")
+                {
+                    // Lấy mã SKU mới
+                    newCode = autoIncreaseCode.Prefix + (autoIncreaseCode.Value)?.ToString("D"+(autoIncreaseCode.Length).ToString());
+                    isDuplicate = _inventoryItemRepository.CheckSKUCodeExist(newCode);
+                    if (isDuplicate)
+                    {
+                        _inventoryItemRepository.updateAutoIncreaseCode(tableName, fieldName, autoIncreaseCode.Value + 1);
+                    }
+                }
+                else if (fieldName == "BarCode")
+                {
+                    // Lấy mã vạch mới
+                    newCode = autoIncreaseCode.Prefix + (autoIncreaseCode.Value)?.ToString("D" + (autoIncreaseCode.Length).ToString());
+                    isDuplicate = _inventoryItemRepository.CheckBarCodeExist(newCode);
+                    if (isDuplicate)
+                    {
+                        _inventoryItemRepository.updateAutoIncreaseCode(tableName, fieldName, autoIncreaseCode.Value + 1);
+                    }
+                }
+                
+            } while (isDuplicate);
+
+            return newCode;
+        }
+        #endregion
     }
 }

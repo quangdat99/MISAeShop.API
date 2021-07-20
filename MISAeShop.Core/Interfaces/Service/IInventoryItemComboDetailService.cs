@@ -10,6 +10,7 @@ namespace MISAeShop.Core.Interfaces.Service
     /// <summary>
     /// Interface service Thành phần hàng hóa của combo
     /// </summary>
+    /// CreatedBy: dqdat (20/07/2021)
     public interface IInventoryItemComboDetailService: IBaseService<InventoryItemComboDetail>
     {
     }

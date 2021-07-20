@@ -59,5 +59,95 @@ namespace MISAeShop.Core.Properties {
                 resourceCulture = value;
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Thêm mới không thành công.
+        /// </summary>
+        public static string addDataFail {
+            get {
+                return ResourceManager.GetString("addDataFail", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Thêm dữ liệu thành công.
+        /// </summary>
+        public static string addDataSuccess {
+            get {
+                return ResourceManager.GetString("addDataSuccess", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Xóa không thành công.
+        /// </summary>
+        public static string deleteDataFail {
+            get {
+                return ResourceManager.GetString("deleteDataFail", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Xóa dữ liệu thành công.
+        /// </summary>
+        public static string deleteDataSuccess {
+            get {
+                return ResourceManager.GetString("deleteDataSuccess", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sửa không thành công.
+        /// </summary>
+        public static string editDataFail {
+            get {
+                return ResourceManager.GetString("editDataFail", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sửa dữ liệu thành công.
+        /// </summary>
+        public static string editDataSuccess {
+            get {
+                return ResourceManager.GetString("editDataSuccess", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Có lỗi xảy ra, vui lòng liên hệ MISA để được trợ giúp.
+        /// </summary>
+        public static string error {
+            get {
+                return ResourceManager.GetString("error", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Lấy dữ liệu thành công.
+        /// </summary>
+        public static string getDataSuccess {
+            get {
+                return ResourceManager.GetString("getDataSuccess", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Không có dữ liệu.
+        /// </summary>
+        public static string noData {
+            get {
+                return ResourceManager.GetString("noData", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Không có dữ liệu trả về.
+        /// </summary>
+        public static string noReturnData {
+            get {
+                return ResourceManager.GetString("noReturnData", resourceCulture);
+            }
+        }
     }
 }

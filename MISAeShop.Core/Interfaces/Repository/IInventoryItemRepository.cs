@@ -10,6 +10,7 @@ namespace MISAeShop.Core.Interfaces.Repository
     /// <summary>
     /// Interface Repository Hàng hóa
     /// </summary>
+    /// CreatedBy: dqdat (20/07/2021)
     public interface IInventoryItemRepository: IBaseRepository<InventoryItem>
     {
         /// <summary>
@@ -17,20 +18,23 @@ namespace MISAeShop.Core.Interfaces.Repository
         /// </summary>
         /// <param name="skuCode"></param>
         /// <returns></returns>
-         InventoryItem GetInventoryItemBySKUCode(string skuCode);
+        /// CreatedBy: dqdat (20/07/2021)
+        InventoryItem GetInventoryItemBySKUCode(string skuCode);
 
         /// <summary>
         /// Lấy toàn bộ thông tin hàng hóa theo parentID
         /// </summary>
         /// <param name="parentID"></param>
         /// <returns></returns>
-         IEnumerable<InventoryItem> GetInventoryItemsByParentID(Guid parentID);
+        /// CreatedBy: dqdat (20/07/2021)
+        IEnumerable<InventoryItem> GetInventoryItemsByParentID(Guid parentID);
 
         /// <summary>
         /// Xóa thông tin hàng hóa bằng theo parentID
         /// </summary>
         /// <param name="parentID"></param>
         /// <returns></returns>
+        /// CreatedBy: dqdat (20/07/2021)
         int DeleteInventoryItemByParentID(Guid parentID);
 
         /// <summary>
@@ -38,12 +42,14 @@ namespace MISAeShop.Core.Interfaces.Repository
         /// </summary>
         /// <param name="inventoryItemComboID"></param>
         /// <returns></returns>
+        /// CreatedBy: dqdat (20/07/2021)
         IEnumerable<InventoryItem> GetInventoryItemComboDetails(Guid inventoryItemComboID);
 
         /// <summary>
         /// Lấy danh sách hàng hóa làm thành phần cho combo
         /// </summary>
         /// <returns></returns>
+        /// CreatedBy: dqdat (20/07/2021)
         IEnumerable<InventoryItem> GetInventoryItemsOptionCombo();
 
         /// <summary>
@@ -51,6 +57,7 @@ namespace MISAeShop.Core.Interfaces.Repository
         /// </summary>
         /// <param name="parentID"></param>
         /// <returns></returns>
+        /// CreatedBy: dqdat (20/07/2021)
         IEnumerable<InventoryItem> GetInventoryItemSelectOptionComboByParentID(Guid parentID);
 
         /// <summary>
@@ -59,6 +66,7 @@ namespace MISAeShop.Core.Interfaces.Repository
         /// <param name="skuCode"></param>
         /// <param name="inventoryItemID"></param>
         /// <returns></returns>
+        /// CreatedBy: dqdat (20/07/2021)
         public bool CheckSKUCodeExist(string skuCode, Guid? inventoryItemID = null);
 
         /// <summary>
@@ -67,6 +75,25 @@ namespace MISAeShop.Core.Interfaces.Repository
         /// <param name="barCode"></param>
         /// <param name="inventoryItemID"></param>
         /// <returns></returns>
+        /// CreatedBy: dqdat (20/07/2021)
         public bool CheckBarCodeExist(string barCode, Guid? inventoryItemID = null);
+
+        /// <summary>
+        /// Lấy mã tự động tăng
+        /// </summary>
+        /// <param name="tableName"></param>
+        /// <param name="fieldName"></param>
+        /// <returns></returns>
+        /// CreatedBy: dqdat (20/07/2021)
+        public AutoIncreaseCode GetAutoIncreaseCode(string tableName, string fieldName);
+
+        /// <summary>
+        /// Cập nhật lại giá trị mã tự động tăng
+        /// </summary>
+        /// <param name="tableName"></param>
+        /// <param name="fieldName"></param>
+        /// <param name="value"></param>
+        /// CreatedBy: dqdat (20/07/2021)
+        public void updateAutoIncreaseCode(string tableName, string fieldName, int? value);
     }
 }

@@ -12,6 +12,7 @@ namespace MISAeShop.Repository.Repositories
     /// <summary>
     /// Repository đơn vị tính
     /// </summary>
+    /// CreatedBy: dqdat (20/07/2021)
     public class UnitRepository : BaseRepository<Unit>, IUnitRepository
     {/// <summary>
      /// Phương thức khởi tạo

@@ -4,6 +4,7 @@ using MISAeShop.Core.Entities;
 using MISAeShop.Core.Exceptions;
 using MISAeShop.Core.Interfaces.Repository;
 using MISAeShop.Core.Interfaces.Service;
+using MISAeShop.Core.Properties;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -62,18 +63,18 @@ namespace MISAeShop.Api.Controllers
                 var res = _baseRepository.GetAll();
                 if (res.Count() > 0)
                 {
-                    var actionResult = new Core.Entities.ActionResult(200, "Lấy dữ liệu thành công", "", res);
+                    var actionResult = new Core.Entities.ActionResult(200, Resources.getDataSuccess, "", res);
                     return Ok(actionResult);
                 }
                 else
                 {
-                    var actionResult = new Core.Entities.ActionResult(204, "Không có dữ liệu trả về", "", new List<T>());
+                    var actionResult = new Core.Entities.ActionResult(204, Resources.noReturnData, "", new List<T>());
                     return Ok(actionResult);
                 }
             }
             catch (Exception exception)
             {
-                var actionResult = new Core.Entities.ActionResult(500, "Có lỗi xảy ra, vui lòng liên hệ MISA để được trợ giúp", exception.Message, new List<T>());
+                var actionResult = new Core.Entities.ActionResult(500, Resources.error, exception.Message, new List<T>());
                 return Ok(actionResult);
             }
         }
@@ -98,18 +99,18 @@ namespace MISAeShop.Api.Controllers
                 var res = _baseRepository.GetById(id);
                 if (res != null)
                 {
-                    var actionResult = new Core.Entities.ActionResult(200, "Lấy dữ liệu thành công", "", res);
+                    var actionResult = new Core.Entities.ActionResult(200, Resources.getDataSuccess, "", res);
                     return Ok(actionResult);
                 }
                 else
                 {
-                    var actionResult = new Core.Entities.ActionResult(204, "Không có dữ liệu trả về", "", null);
+                    var actionResult = new Core.Entities.ActionResult(204, Resources.noReturnData, "", null);
                     return Ok(actionResult);
                 }
             }
             catch (Exception exception)
             {
-                var actionResult = new Core.Entities.ActionResult(500, "Có lỗi xảy ra, vui lòng liên hệ MISA để được trợ giúp", exception.Message, null);
+                var actionResult = new Core.Entities.ActionResult(500, Resources.error, exception.Message, null);
                 return Ok(actionResult);
             }
         }
@@ -133,12 +134,12 @@ namespace MISAeShop.Api.Controllers
                 var rowsAffect = _baseService.Insert(t);
                 if (rowsAffect > 0)
                 {
-                    var actionResult = new Core.Entities.ActionResult(200, "Thêm dữ liệu thành công", "", rowsAffect);
+                    var actionResult = new Core.Entities.ActionResult(200, Resources.addDataSuccess, "", rowsAffect);
                     return Ok(actionResult);
                 }
                 else
                 {
-                    var actionResult = new Core.Entities.ActionResult(204, "Thêm mới không thành công", "", 0);
+                    var actionResult = new Core.Entities.ActionResult(204, Resources.addDataFail, "", 0);
                     return Ok(actionResult);
                 }
             }
@@ -150,7 +151,7 @@ namespace MISAeShop.Api.Controllers
             }
             catch (Exception exception)
             {
-                var actionResult = new Core.Entities.ActionResult(500, "Có lỗi xảy ra, vui lòng liên hệ MISA để được trợ giúp", exception.Message, 0);
+                var actionResult = new Core.Entities.ActionResult(500, Resources.error, exception.Message, 0);
                 return Ok(actionResult);
             }
         }
@@ -174,12 +175,12 @@ namespace MISAeShop.Api.Controllers
                 var rowsAffect = _baseService.Update(t, id);
                 if (rowsAffect > 0)
                 {
-                    var actionResult = new Core.Entities.ActionResult(200, "Sửa dữ liệu thành công", "", rowsAffect);
+                    var actionResult = new Core.Entities.ActionResult(200, Resources.editDataSuccess, "", rowsAffect);
                     return Ok(actionResult);
                 }
                 else
                 {
-                    var actionResult = new Core.Entities.ActionResult(204, "Sửa không thành công", "", 0);
+                    var actionResult = new Core.Entities.ActionResult(204, Resources.editDataFail, "", 0);
                     return Ok(actionResult);
                 }
             }
@@ -190,7 +191,7 @@ namespace MISAeShop.Api.Controllers
             }
             catch (Exception exception)
             {
-                var actionResult = new Core.Entities.ActionResult(500, "Có lỗi xảy ra, vui lòng liên hệ MISA để được trợ giúp", exception.Message, 0);
+                var actionResult = new Core.Entities.ActionResult(500, Resources.error, exception.Message, 0);
                 return Ok(actionResult);
             }
         }
@@ -214,12 +215,12 @@ namespace MISAeShop.Api.Controllers
                 var rowsAffect = _baseRepository.Delete(id);
                 if (rowsAffect > 0)
                 {
-                    var actionResult = new Core.Entities.ActionResult(200, "Xóa dữ liệu thành công", "", rowsAffect);
+                    var actionResult = new Core.Entities.ActionResult(200,  Resources.deleteDataSuccess, "", rowsAffect);
                     return Ok(actionResult);
                 }
                 else
                 {
-                    var actionResult = new Core.Entities.ActionResult(204, "Xóa không thành công", "", 0);
+                    var actionResult = new Core.Entities.ActionResult(204, Resources.deleteDataFail, "", 0);
                     return Ok(actionResult);
                 }
             }
@@ -230,7 +231,7 @@ namespace MISAeShop.Api.Controllers
             }
             catch (Exception exception)
             {
-                var actionResult = new Core.Entities.ActionResult(500, "Có lỗi xảy ra, vui lòng liên hệ MISA để được trợ giúp", exception.Message, 0);
+                var actionResult = new Core.Entities.ActionResult(500, Resources.error, exception.Message, 0);
                 return Ok(actionResult);
             }
         }
@@ -255,18 +256,18 @@ namespace MISAeShop.Api.Controllers
                 var res = _baseService.GetPaging(filterPagingData, ref totalRecord);
                 if (res.Count() == 0)
                 {
-                    var actionResult = new Core.Entities.ActionResult(204, "Không có dữ liệu trả về", "", new List<T>());
+                    var actionResult = new Core.Entities.ActionResult(204, Resources.noReturnData, "", new List<T>());
                     return Ok(actionResult);
                 }
                 else
                 {
-                    var actionResult = new Core.Entities.ActionResult(200, "Lấy dữ liệu thành công", "", res, totalRecord);
+                    var actionResult = new Core.Entities.ActionResult(200, Resources.getDataSuccess, "", res, totalRecord);
                     return Ok(actionResult);
                 }
             }
             catch (Exception exception)
             {
-                var actionResult = new Core.Entities.ActionResult(500, "Có lỗi xảy ra, vui lòng liên hệ MISA để được trợ giúp", exception.Message, new List<T>());
+                var actionResult = new Core.Entities.ActionResult(500, Resources.error, exception.Message, new List<T>());
                 return Ok(actionResult);
             }
             #endregion

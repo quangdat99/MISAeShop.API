@@ -42,6 +42,13 @@ namespace MISAeShop.Repository.Repositories
             return isExist;
         }
 
+        public bool CheckInventoryItemIncurred(Guid inventoryItemID)
+        {
+            Parameters.Add("@m_InventoryItemID", inventoryItemID);
+            var isIncurred = DbConnection.ExecuteScalar<bool>("Proc_CheckInventoryItemIncurred", param: Parameters, commandType: CommandType.StoredProcedure);
+            return isIncurred;
+        }
+
         public bool CheckSKUCodeExist(string skuCode, Guid? inventoryItemID = null)
         {
             Parameters.Add("@m_SKUCode", skuCode);

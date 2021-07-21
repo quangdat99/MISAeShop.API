@@ -79,6 +79,14 @@ namespace MISAeShop.Core.Interfaces.Repository
         public bool CheckBarCodeExist(string barCode, Guid? inventoryItemID = null);
 
         /// <summary>
+        /// Kiểm tra hàng hóa đã có phát sinh hay chưa
+        /// </summary>
+        /// <param name="inventoryItemID"></param>
+        /// <returns></returns>
+        /// CreatedBy: dqdat (20/07/2021)
+        public bool CheckInventoryItemIncurred(Guid inventoryItemID);
+
+        /// <summary>
         /// Lấy mã tự động tăng
         /// </summary>
         /// <param name="tableName"></param>

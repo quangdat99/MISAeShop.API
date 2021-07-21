@@ -297,6 +297,35 @@ namespace MISAeShop.Api.Controllers
                 return Ok(actionResult);
             }
         }
+
+        /// <summary>
+        /// Kiểm tra hàng hóa đã có phát sinh hay chưa
+        /// </summary>
+        /// <param name="inventoryItemID"></param>
+        /// <returns>
+        /// 200 - Có dữ liệu
+        /// 204 - Không có dữ liệu
+        /// 400 - Lỗi client
+        /// 500 - Lỗi server
+        /// </returns>
+        /// CreatedBy: dqdat (20/07/2021)
+        [HttpGet("CheckInventoryItemIncurred/{inventoryItemID}")]
+        public IActionResult CheckInventoryItemIncurred(Guid inventoryItemID)
+        {
+            try
+            {
+                var isIncurred = _inventoryItemRepository.CheckInventoryItemIncurred(inventoryItemID);
+                
+                var actionResult = new Core.Entities.ActionResult(200, Resources.getDataSuccess, "", isIncurred);
+                return Ok(actionResult);
+                
+            }
+            catch (Exception exception)
+            {
+                var actionResult = new Core.Entities.ActionResult(500, Resources.error, exception.Message, null);
+                return Ok(actionResult);
+            }
+        }
         #endregion
     }
 }
